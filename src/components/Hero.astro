@@ -1,0 +1,130 @@
+---
+---
+
+<section class="hero" id="inicio">
+	<div class="hero-inner">
+		<p class="hero-eyebrow">Soluciones Digitales</p>
+		<h1 class="hero-title">
+			Diseñamos<br />
+			ideas que <span class="hero-highlight">conectan</span>
+		</h1>
+		<p class="hero-subtitle">
+			Soluciones creativas y estratégicas para impulsar tu marca
+			en el mundo digital.
+		</p>
+		<a href="#servicios" class="hero-cta">
+			Conoce más
+			<span class="hero-cta-arrow">→</span>
+		</a>
+	</div>
+
+	<div class="hero-blob" aria-hidden="true"></div>
+</section>
+
+<style>
+	.hero {
+		position: relative;
+		min-height: 70vh;
+		display: flex;
+		align-items: center;
+		background: var(--color-black);
+		overflow: hidden;
+		padding: 3rem 1.5rem;
+	}
+
+	.hero-inner {
+		position: relative;
+		z-index: 2;
+		max-width: 1200px;
+		margin: 0 auto;
+		width: 100%;
+	}
+
+	.hero-eyebrow {
+		color: var(--color-white);
+		opacity: 0.7;
+		font-weight: 600;
+		letter-spacing: 0.15em;
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		margin-bottom: 1rem;
+	}
+
+	.hero-title {
+		color: var(--color-white);
+		font-size: clamp(2.2rem, 6vw, 4rem);
+		line-height: 1.1;
+		margin-bottom: 1.5rem;
+	}
+
+	.hero-highlight {
+		color: var(--color-magenta);
+		font-style: italic;
+	}
+
+	.hero-subtitle {
+		color: var(--color-white);
+		opacity: 0.85;
+		font-size: 1.1rem;
+		max-width: 480px;
+		margin-bottom: 2rem;
+		line-height: 1.6;
+	}
+
+	.hero-cta {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.6rem;
+		background: transparent;
+		border: 2px solid var(--color-white);
+		color: var(--color-white);
+		font-weight: 700;
+		font-size: 0.9rem;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		padding: 0.9rem 1.8rem;
+		border-radius: 999px;
+		transition: background 0.25s ease, color 0.25s ease;
+	}
+
+	.hero-cta:hover {
+		background: var(--color-white);
+		color: var(--color-black);
+	}
+
+	.hero-cta-arrow {
+		transition: transform 0.25s ease;
+	}
+
+	.hero-cta:hover .hero-cta-arrow {
+		transform: translateX(4px);
+	}
+
+	/* La "cinta" CMYK decorativa, hecha con gradientes de fondo */
+	.hero-blob {
+		position: absolute;
+		top: -20%;
+		right: -15%;
+		width: 60%;
+		height: 140%;
+		z-index: 1;
+		background: linear-gradient(
+			135deg,
+			var(--color-magenta) 0%,
+			var(--color-black) 35%,
+			var(--color-blue) 55%,
+			var(--color-yellow) 80%
+		);
+		border-radius: 50% 40% 60% 30% / 40% 50% 40% 60%;
+		opacity: 0.9;
+		filter: blur(0px);
+	}
+
+	@media (max-width: 768px) {
+		.hero-blob {
+			opacity: 0.35;
+			width: 100%;
+			right: -30%;
+		}
+	}
+</style>

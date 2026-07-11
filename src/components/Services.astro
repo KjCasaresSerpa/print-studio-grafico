@@ -1,0 +1,101 @@
+---
+import { Palette, Monitor, Printer, Megaphone, Share2 } from "@lucide/astro";
+
+const services = [
+	{
+		Icon: Palette,
+		title: "Diseño Gráfico",
+		description: "Creamos identidades visuales que representan la esencia de tu marca.",
+	},
+	{
+		Icon: Monitor,
+		title: "Diseño Web",
+		description: "Sitios web modernos, funcionales y adaptados a todos los dispositivos.",
+	},
+	{
+		Icon: Printer,
+		title: "Impresión Digital",
+		description: "Impresiones de alta calidad para todos tus proyectos y formatos.",
+	},
+	{
+		Icon: Megaphone,
+		title: "Marketing Digital",
+		description: "Estrategias creativas que conectan tu marca con las personas correctas.",
+	},
+	{
+		Icon: Share2,
+		title: "Redes Sociales",
+		description: "Gestionamos y diseñamos contenido que destaca tu marca en línea.",
+	},
+];
+---
+
+<section class="services" id="servicios">
+	<div class="services-inner">
+		{services.map((service) => (
+			<div class="service-card">
+				<div class="service-icon">
+					<service.Icon size={28} strokeWidth={1.75} />
+				</div>
+				<h3 class="service-title">{service.title}</h3>
+				<p class="service-description">{service.description}</p>
+			</div>
+		))}
+	</div>
+</section>
+
+<style>
+	.services {
+		background: var(--color-gray-light);
+		padding: 3.5rem 1.5rem;
+	}
+
+	.services-inner {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+		gap: 2rem;
+	}
+
+	.service-card {
+		text-align: left;
+	}
+
+	.service-icon {
+		width: 52px;
+		height: 52px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 14px;
+		background: var(--color-white);
+		color: var(--color-magenta);
+		margin-bottom: 1rem;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+	}
+
+	.service-title {
+		font-size: 1.05rem;
+		margin-bottom: 0.5rem;
+		color: var(--color-black);
+	}
+
+	.service-description {
+		font-size: 0.9rem;
+		color: var(--color-gray);
+		line-height: 1.5;
+	}
+
+	@media (min-width: 640px) {
+		.services-inner {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.services-inner {
+			grid-template-columns: repeat(5, 1fr);
+		}
+	}
+</style>

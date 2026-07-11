@@ -1,0 +1,237 @@
+---
+import logo from "../assets/logo.png";
+import { Image } from "astro:assets";
+
+const navItems = [
+	{ label: "Inicio", href: "#inicio" },
+	{ label: "Servicios", href: "#servicios" },
+	{ label: "Nosotros", href: "#nosotros" },
+	{ label: "Contacto", href: "#contacto" },
+];
+---
+
+<header class="header">
+	<div class="header-inner">
+		<a href="#inicio" class="logo-link">
+			<Image src={logo} alt="Print Studio Gráfico" width={48} height={48} />
+			<span class="logo-text">
+				PRINT<span class="logo-text-thin">STUDIO GRÁFICO</span>
+			</span>
+		</a>
+
+		<nav class="nav-desktop">
+			{navItems.map((item) => (
+				<a href={item.href} class="nav-link">{item.label}</a>
+			))}
+		</nav>
+
+		<a href="#contacto" class="cta-button cta-desktop">Cotizar</a>
+
+		<button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+			<span class="menu-icon"></span>
+		</button>
+	</div>
+
+	<nav class="nav-mobile" id="nav-mobile">
+		{navItems.map((item) => (
+			<a href={item.href} class="nav-mobile-link">{item.label}</a>
+		))}
+		<a href="#contacto" class="cta-button cta-mobile">Cotizar</a>
+	</nav>
+</header>
+
+<style>
+	.header {
+		position: sticky;
+		top: 0;
+		z-index: 50;
+		background: var(--color-white);
+		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+	}
+
+	.header-inner {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0.75rem 1.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+
+	.logo-link {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.logo-text {
+		font-weight: 800;
+		font-size: 1.1rem;
+		letter-spacing: 0.02em;
+		color: var(--color-black);
+		display: flex;
+		flex-direction: column;
+		line-height: 1.1;
+	}
+
+	.logo-text-thin {
+		font-weight: 500;
+		font-size: 0.6rem;
+		color: var(--color-gray);
+		letter-spacing: 0.1em;
+	}
+
+	.nav-desktop {
+		display: none;
+		gap: 2rem;
+	}
+
+	.nav-link {
+		font-weight: 600;
+		font-size: 0.95rem;
+		color: var(--color-black);
+		transition: color 0.2s ease;
+	}
+
+	.nav-link:hover {
+		color: var(--color-magenta);
+	}
+
+	.cta-button {
+		background: var(--color-magenta);
+		color: var(--color-white);
+		font-weight: 600;
+		font-size: 0.9rem;
+		padding: 0.6rem 1.4rem;
+		border-radius: 999px;
+		transition: transform 0.2s ease, background 0.2s ease;
+		white-space: nowrap;
+		text-align: center;
+	}
+
+	.cta-button:hover {
+		background: var(--color-black);
+		transform: translateY(-2px);
+	}
+
+	.cta-desktop {
+		display: none;
+	}
+
+	/* Botón hamburguesa */
+	.menu-toggle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 42px;
+		height: 42px;
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		padding: 0;
+	}
+
+	.menu-icon,
+	.menu-icon::before,
+	.menu-icon::after {
+		display: block;
+		width: 24px;
+		height: 2px;
+		background: var(--color-black);
+		border-radius: 2px;
+		transition: transform 0.25s ease, opacity 0.25s ease;
+	}
+
+	.menu-icon {
+		position: relative;
+	}
+
+	.menu-icon::before,
+	.menu-icon::after {
+		content: "";
+		position: absolute;
+		left: 0;
+	}
+
+	.menu-icon::before {
+		top: -7px;
+	}
+
+	.menu-icon::after {
+		top: 7px;
+	}
+
+	/* Cuando el menú está abierto, la hamburguesa se convierte en X */
+	.menu-toggle[aria-expanded="true"] .menu-icon {
+		background: transparent;
+	}
+
+	.menu-toggle[aria-expanded="true"] .menu-icon::before {
+		transform: rotate(45deg);
+		top: 0;
+	}
+
+	.menu-toggle[aria-expanded="true"] .menu-icon::after {
+		transform: rotate(-45deg);
+		top: 0;
+	}
+
+	/* Menú móvil desplegable */
+	.nav-mobile {
+		display: none;
+		flex-direction: column;
+		gap: 0;
+		padding: 0 1.5rem 1rem;
+		background: var(--color-white);
+	}
+
+	.nav-mobile.is-open {
+		display: flex;
+	}
+
+	.nav-mobile-link {
+		font-weight: 600;
+		font-size: 1rem;
+		color: var(--color-black);
+		padding: 0.85rem 0;
+		border-bottom: 1px solid var(--color-gray-light);
+	}
+
+	.cta-mobile {
+		margin-top: 1rem;
+	}
+
+	@media (min-width: 768px) {
+		.nav-desktop {
+			display: flex;
+		}
+
+		.cta-desktop {
+			display: block;
+		}
+
+		.menu-toggle,
+		.nav-mobile {
+			display: none;
+		}
+	}
+</style>
+
+<script>
+	const toggleBtn = document.getElementById("menu-toggle");
+	const mobileNav = document.getElementById("nav-mobile");
+
+	toggleBtn?.addEventListener("click", () => {
+		const isOpen = mobileNav?.classList.toggle("is-open");
+		toggleBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+	});
+
+	// Cierra el menú al hacer clic en un link
+	mobileNav?.querySelectorAll("a").forEach((link) => {
+		link.addEventListener("click", () => {
+			mobileNav.classList.remove("is-open");
+			toggleBtn?.setAttribute("aria-expanded", "false");
+		});
+	});
+</script>

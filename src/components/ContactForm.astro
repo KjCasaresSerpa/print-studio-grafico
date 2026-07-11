@@ -1,0 +1,187 @@
+---
+---
+
+<section class="contact-form-section">
+	<div class="contact-form-inner">
+		<div class="contact-form-header">
+			<p class="contact-eyebrow">Hablemos</p>
+			<h2 class="contact-title">Cuéntanos sobre tu proyecto</h2>
+			<p class="contact-subtitle">
+				Completa el formulario y te contactaremos lo antes posible.
+			</p>
+		</div>
+
+		<form class="contact-form" id="contact-form">
+			<div class="form-row">
+				<div class="form-group">
+					<label for="name" class="form-label">Nombre</label>
+					<input type="text" id="name" name="name" class="form-input" placeholder="Tu nombre" required />
+				</div>
+				<div class="form-group">
+					<label for="email" class="form-label">Correo electrónico</label>
+					<input type="email" id="email" name="email" class="form-input" placeholder="tu@correo.com" required />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="service" class="form-label">Servicio de interés</label>
+				<select id="service" name="service" class="form-input" required>
+					<option value="" disabled selected>Selecciona una opción</option>
+					<option value="diseno-grafico">Diseño Gráfico</option>
+					<option value="diseno-web">Diseño Web</option>
+					<option value="impresion-digital">Impresión Digital</option>
+					<option value="marketing-digital">Marketing Digital</option>
+					<option value="redes-sociales">Redes Sociales</option>
+					<option value="otro">Otro</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="message" class="form-label">Mensaje</label>
+				<textarea id="message" name="message" class="form-input form-textarea" rows="5" placeholder="Cuéntanos qué necesitas..." required></textarea>
+			</div>
+
+			<button type="submit" class="form-submit">
+				Enviar mensaje
+			</button>
+
+			<p class="form-note" id="form-note"></p>
+		</form>
+	</div>
+</section>
+
+<style>
+	.contact-form-section {
+		background: var(--color-white);
+		padding: 4rem 1.5rem;
+	}
+
+	.contact-form-inner {
+		max-width: 700px;
+		margin: 0 auto;
+	}
+
+	.contact-form-header {
+		text-align: center;
+		margin-bottom: 2.5rem;
+	}
+
+	.contact-eyebrow {
+		color: var(--color-magenta);
+		font-weight: 700;
+		font-size: 0.85rem;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		margin-bottom: 0.75rem;
+	}
+
+	.contact-title {
+		font-size: clamp(1.6rem, 4vw, 2.2rem);
+		color: var(--color-black);
+		margin-bottom: 0.75rem;
+	}
+
+	.contact-subtitle {
+		color: var(--color-gray);
+		font-size: 1rem;
+	}
+
+	.contact-form {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+
+	.form-row {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.25rem;
+	}
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	.form-label {
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: var(--color-black);
+	}
+
+	.form-input {
+		font-family: var(--font-main);
+		font-size: 0.95rem;
+		padding: 0.8rem 1rem;
+		border: 1.5px solid #e2e2e8;
+		border-radius: 10px;
+		background: var(--color-white);
+		color: var(--color-black);
+		transition: border-color 0.2s ease;
+	}
+
+	.form-input:focus {
+		outline: none;
+		border-color: var(--color-magenta);
+	}
+
+	.form-textarea {
+		resize: vertical;
+		min-height: 120px;
+	}
+
+	.form-submit {
+		background: var(--color-magenta);
+		color: var(--color-white);
+		font-weight: 700;
+		font-size: 0.95rem;
+		padding: 0.9rem 1.5rem;
+		border: none;
+		border-radius: 999px;
+		cursor: pointer;
+		transition: background 0.2s ease, transform 0.2s ease;
+	}
+
+	.form-submit:hover {
+		background: var(--color-black);
+		transform: translateY(-2px);
+	}
+
+	.form-note {
+		font-size: 0.85rem;
+		color: var(--color-gray);
+		text-align: center;
+		min-height: 1.2rem;
+	}
+
+	@media (min-width: 640px) {
+		.form-row {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+</style>
+
+<script>
+	const form = document.getElementById("contact-form") as HTMLFormElement | null;
+	const note = document.getElementById("form-note");
+
+	form?.addEventListener("submit", (e) => {
+		e.preventDefault();
+
+		// TODO: Cuando tengamos el backend con NestJS, aquí vamos a hacer
+		// un fetch() real a nuestra API, por ejemplo:
+		// await fetch("http://localhost:3000/contact", {
+		//   method: "POST",
+		//   headers: { "Content-Type": "application/json" },
+		//   body: JSON.stringify(Object.fromEntries(new FormData(form))),
+		// });
+
+		if (note) {
+			note.textContent = "Formulario listo (aún no conectado a un backend). ¡Pronto lo conectaremos!";
+			note.style.color = "#00aeef";
+		}
+
+		console.log("Datos del formulario:", Object.fromEntries(new FormData(form)));
+	});
+</script>

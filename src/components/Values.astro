@@ -1,0 +1,78 @@
+---
+import { Lightbulb, Award, Rocket, Handshake } from "@lucide/astro";
+
+const values = [
+	{ Icon: Lightbulb, title: "Creatividad", description: "Ideas originales que generan impacto." },
+	{ Icon: Award, title: "Calidad", description: "Trabajamos con los más altos estándares en cada proyecto." },
+	{ Icon: Rocket, title: "Innovación", description: "Nos mantenemos a la vanguardia para ofrecerte lo mejor." },
+	{ Icon: Handshake, title: "Compromiso", description: "Tu éxito es nuestro mejor resultado." },
+];
+---
+
+<section class="values" id="nosotros">
+	<div class="values-inner">
+		{values.map((value) => (
+			<div class="value-item">
+				<div class="value-icon">
+					<value.Icon size={22} strokeWidth={1.75} />
+				</div>
+				<div>
+					<h3 class="value-title">{value.title}</h3>
+					<p class="value-description">{value.description}</p>
+				</div>
+			</div>
+		))}
+	</div>
+</section>
+
+<style>
+	.values {
+		background: var(--color-black);
+		padding: 2.5rem 1.5rem;
+	}
+
+	.values-inner {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.75rem;
+	}
+
+	.value-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 1rem;
+	}
+
+	.value-icon {
+		width: 44px;
+		height: 44px;
+		flex-shrink: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.08);
+		color: var(--color-yellow);
+	}
+
+	.value-title {
+		color: var(--color-white);
+		font-size: 1rem;
+		margin-bottom: 0.25rem;
+	}
+
+	.value-description {
+		color: var(--color-white);
+		opacity: 0.65;
+		font-size: 0.85rem;
+		line-height: 1.5;
+	}
+
+	@media (min-width: 900px) {
+		.values-inner {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+</style>
